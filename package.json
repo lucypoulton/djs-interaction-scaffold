@@ -1,0 +1,22 @@
+{
+  "name": "djs-command-scaffold",
+  "version": "1.0.0",
+  "description": "Handles the faffy bit of setting up interaction-based command with Discord.js",
+  "author": "Lucy Poulton <lucy@lucypoulton.net>",
+  "license": "BSD-2-Clause",
+  "repository": "github:lucypoulton/djs-command-scaffold",
+  "files": ["dist/**"],
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "@discordjs/rest": "^0.3.0",
+    "discord-api-types": "^0.31.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  },
+  "keywords": ["discord.js", "commands", "interactions", "discord"]
+}
