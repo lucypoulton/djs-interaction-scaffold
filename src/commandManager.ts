@@ -25,12 +25,12 @@ export class CommandManager {
 		await this.rest().put(route, {body: Object.values(this.commands)})
 	}
 
-	private async setupPermissions(commands: Collection<Snowflake, ApplicationCommand<any>>) {
+	private async setupPermissions(commands: Collection<Snowflake, ApplicationCommand<any>>, guild?: Snowflake) {
 		return Promise.all(commands.map(async (cmd) => {
 			const localCommand = this.commands.find(localCmd => cmd.name === localCmd.name);
 			if (!localCommand || !localCommand.permissions) return
 			return cmd.permissions.set({
-				guild: localCommand.permissions[0].id,
+				guild,
 				permissions: localCommand.permissions
 			})
 		}))
@@ -49,7 +49,7 @@ export class CommandManager {
 		const commands = await guild.commands.fetch()
 		if (!commands) return
 		console.log('Setting up ' + commands.size + " commands")
-		await this.setupPermissions(commands)
+		await this.setupPermissions(commands, guildId)
 	}
 
 	listener(interaction: Interaction) {
