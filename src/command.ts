@@ -1,14 +1,13 @@
 import {
 	APIApplicationCommandOption,
-	ApplicationCommandType
 } from 'discord-api-types/v10'
+import type {ApplicationCommandType} from 'discord-api-types/v10';
 import {
 	ApplicationCommandPermissionData,
 	CommandInteraction,
 	MessageContextMenuInteraction,
 	UserContextMenuInteraction
 } from 'discord.js'
-
 
 export type InteractionFor<T extends ApplicationCommandType> = {
 	[ApplicationCommandType.Message]: MessageContextMenuInteraction,
@@ -27,5 +26,5 @@ interface BaseCommand<T extends ApplicationCommandType> {
 
 export type Command<T extends ApplicationCommandType> = BaseCommand<T> &
 	(T extends ApplicationCommandType.ChatInput ?
-	{ description: string, options?: APIApplicationCommandOption[] } :
-	{})
+		{ description: string, options?: APIApplicationCommandOption[] } :
+		{})

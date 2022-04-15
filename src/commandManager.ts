@@ -3,7 +3,6 @@ import {Command} from './command.js'
 import {ApplicationCommandType, Routes} from 'discord-api-types/v10'
 import {REST} from '@discordjs/rest'
 
-
 const Lazy = function <T>(this: any, provider: () => T): () => T {
 	this.provider = provider
 	return () => this.thing ?? (this.thing = this.provider())
