@@ -1,6 +1,10 @@
 import {ApplicationCommand, Client, Collection, Interaction, Snowflake} from 'discord.js'
-import {Command} from './command.js'
-import {ApplicationCommandType, Routes} from 'discord-api-types/v10'
+import {Command, ExecutableSubcommand, isSubcommandRoot} from './command.js'
+import {
+	ApplicationCommandOptionType,
+	ApplicationCommandType,
+	Routes
+} from 'discord-api-types/v10'
 import {REST} from '@discordjs/rest'
 
 const Lazy = function <T>(this: any, provider: () => T): () => T {
@@ -60,6 +64,14 @@ export class CommandManager {
 			(interaction.isMessageContextMenu() && handler.type !== ApplicationCommandType.Message) ||
 			(interaction.isUserContextMenu() && handler.type !== ApplicationCommandType.User)
 		) return;
-		handler.handle(interaction as never);
+
+		if (interaction.isCommand() && isSubcommandRoot(handler)) {
+			const groupName = interaction.options.getSubcommandGroup(false);
+			const commandName = interaction.options.getSubcommand(true);
+			const group = (groupName ? handler.options.find(opt =>
+				opt.type == ApplicationCommandOptionType.SubcommandGroup &&
+				opt.name == groupName)?.options : handler.options) as ExecutableSubcommand[]
+			group.find(opt => opt.name == commandName)?.handle(interaction);
+		} else handler.handle(interaction as never);
 	}
 }
