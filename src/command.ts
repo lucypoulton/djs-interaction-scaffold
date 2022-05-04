@@ -6,7 +6,6 @@ import {
 	ApplicationCommandType
 } from 'discord-api-types/v10';
 import {
-	ApplicationCommandPermissionData,
 	CommandInteraction,
 	MessageContextMenuInteraction,
 	UserContextMenuInteraction
@@ -21,7 +20,6 @@ export type InteractionFor<T extends ApplicationCommandType> = {
 interface BaseCommand<T extends ApplicationCommandType> {
 	name: string
 	type: T,
-	permissions: ApplicationCommandPermissionData[],
 	default_permission?: boolean,
 
 	handle(interaction: InteractionFor<T>): unknown
