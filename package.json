@@ -5,19 +5,26 @@
   "author": "Lucy Poulton <lucy@lucypoulton.net>",
   "license": "BSD-2-Clause",
   "repository": "github:lucypoulton/djs-slash-helper",
-  "files": ["dist/**"],
+  "files": [
+    "dist/**"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "discord.js": "^13.6.0",
-    "@discordjs/rest": "^0.3.0",
-    "discord-api-types": "^0.31.1"
+    "@discordjs/rest": "^1.0.1",
+    "discord-api-types": "^0.37.2",
+    "discord.js": "^14.2.0"
   },
   "devDependencies": {
     "typescript": "^4.6.3"
   },
-  "keywords": ["discord.js", "commands", "interactions", "discord"]
+  "keywords": [
+    "discord.js",
+    "commands",
+    "interactions",
+    "discord"
+  ]
 }
