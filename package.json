@@ -1,6 +1,6 @@
 {
   "name": "djs-slash-helper",
-  "version": "1.2.0",
+  "version": "2.0.0-dev",
   "description": "Handles the faffy bit of setting up interaction-based command with Discord.js",
   "author": "Lucy Poulton <lucy@lucypoulton.net>",
   "license": "BSD-2-Clause",
@@ -11,8 +11,7 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "postinstall": "tsc --outDir ./build"
+    "build": "tsc"
   },
   "dependencies": {
     "@discordjs/rest": "^1.0.1",
