@@ -1,6 +1,6 @@
 {
   "name": "djs-slash-helper",
-  "version": "2.0.0-dev",
+  "version": "2.0.0",
   "description": "Handles the faffy bit of setting up interaction-based command with Discord.js",
   "author": "Lucy Poulton <lucy@lucypoulton.net>",
   "license": "BSD-2-Clause",

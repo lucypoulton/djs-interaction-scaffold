@@ -47,13 +47,19 @@ export class CommandManager {
 			(interaction.isUserContextMenuCommand() && handler.type !== ApplicationCommandType.User)
 		) return;
 
-		if (interaction.isChatInputCommand() && isSubcommandRoot(handler)) {
-			const groupName = interaction.options.getSubcommandGroup(false);
-			const commandName = interaction.options.getSubcommand(true);
-			const group = (groupName ? handler.options.find(opt =>
-				opt.type == ApplicationCommandOptionType.SubcommandGroup &&
-				opt.name == groupName)?.options : handler.options) as ExecutableSubcommand[]
-			group.find(opt => opt.name == commandName)?.handle(interaction);
-		} else handler.handle(interaction as never);
+		try {
+			if (interaction.isChatInputCommand() && isSubcommandRoot(handler)) {
+				const groupName = interaction.options.getSubcommandGroup(false);
+				const commandName = interaction.options.getSubcommand(true);
+				const group = (groupName ? handler.options.find(opt =>
+					opt.type == ApplicationCommandOptionType.SubcommandGroup &&
+					opt.name == groupName)?.options : handler.options) as ExecutableSubcommand[]
+				group.find(opt => opt.name == commandName)?.handle(interaction);
+			} else handler.handle?.(interaction as never);
+		} catch (ex) {
+			console.error(ex)
+			interaction.reply('An error occurred').catch(() =>
+				console.error('Failed to send error message for the above exception'))
+		}
 	}
 }
