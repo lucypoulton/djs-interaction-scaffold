@@ -38,16 +38,16 @@ export class CommandManager {
 	}
 
 	listener(interaction: Interaction) {
-		if (!interaction.isApplicationCommand()) return;
+		if (!interaction.isCommand()) return;
 		const handler = this.commands.find(cmd => cmd.name === interaction.commandName);
 
 		if (!handler ||
-			(interaction.isCommand() && handler.type !== ApplicationCommandType.ChatInput) ||
-			(interaction.isMessageContextMenu() && handler.type !== ApplicationCommandType.Message) ||
-			(interaction.isUserContextMenu() && handler.type !== ApplicationCommandType.User)
+			(interaction.isChatInputCommand() && handler.type !== ApplicationCommandType.ChatInput) ||
+			(interaction.isMessageContextMenuCommand() && handler.type !== ApplicationCommandType.Message) ||
+			(interaction.isUserContextMenuCommand() && handler.type !== ApplicationCommandType.User)
 		) return;
 
-		if (interaction.isCommand() && isSubcommandRoot(handler)) {
+		if (interaction.isChatInputCommand() && isSubcommandRoot(handler)) {
 			const groupName = interaction.options.getSubcommandGroup(false);
 			const commandName = interaction.options.getSubcommand(true);
 			const group = (groupName ? handler.options.find(opt =>
