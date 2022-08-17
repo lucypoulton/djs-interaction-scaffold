@@ -1,6 +1,7 @@
 ## `djs-slash-helper`
-
 Handles the faffy bit of setting up interaction-based command with Discord.js
+
+![https://www.npmjs.com/package/djs-slash-helper](https://img.shields.io/npm/v/djs-slash-helper?color=%23C12127)
 
 ## Usage
 
